@@ -39,15 +39,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v2
 
-      - name: Upload Images
+      - name: Upload Repository
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './imgs'
-
-      - name: Upload Documents
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: './docs'
+          path: '.'
 
       - name: Deploy to GitHub Pages
         id: deployment
