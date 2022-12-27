@@ -40,7 +40,10 @@ jobs:
         uses: actions/configure-pages@v2
 
       - name: Copy Images
-        run: bash -c "cp -r ./imgs ./docs"
+        uses: canastro/copy-file-action@master
+        with:
+          source: "./imgs/"
+          target: "./docs/"
 
       - name: Upload Documents
         uses: actions/upload-pages-artifact@v1
