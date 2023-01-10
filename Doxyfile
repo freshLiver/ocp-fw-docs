@@ -918,6 +918,8 @@ RECURSIVE              = YES
 # run.
 
 EXCLUDE                =
+EXCLUDE                += theme/
+EXCLUDE                += GreedyFTL-3.0.0/
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
