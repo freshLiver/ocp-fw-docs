@@ -71,6 +71,17 @@ void InitFTL()
     InitDataBuf();         //
     InitGcVictimMap();     //
 
+    /*
+     * MB_PER_BLOCK                         == 16384 * 256 / (1024 * 1024) == 4
+     * MB_PER_SSD                           == USER_BLOCKS_PER_DIE * USER_DIES * MB_PER_BLOCK == 524288
+     * MB_PER_MIN_FREE_BLOCK_SPACE          == USER_DIES * MB_PER_BLOCK
+     * MB_PER_OVER_PROVISION_BLOCK_SPACE    == (USER_BLOCKS_PER_DIE * USER_DIES / 10) * MB_PER_BLOCK
+     * BYTES_PER_NVME_BLOCK                 == 4096
+     */
+    xil_printf("[Total bad blocks size: %d MB ]\r\n", mbPerbadBlockSpace); // calculated in `RemapBadBlock()`
+    xil_printf("[Total min free block size: %d MB ]\r\n", MB_PER_MIN_FREE_BLOCK_SPACE);
+    xil_printf("[Total over provision size: %d MB ]\r\n", MB_PER_OVER_PROVISION_BLOCK_SPACE);
+
     storageCapacity_L =
         (MB_PER_SSD - (MB_PER_MIN_FREE_BLOCK_SPACE + mbPerbadBlockSpace + MB_PER_OVER_PROVISION_BLOCK_SPACE)) *
         ((1024 * 1024) / BYTES_PER_NVME_BLOCK);
